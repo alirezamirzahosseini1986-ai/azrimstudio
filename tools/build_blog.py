@@ -10,6 +10,7 @@ blog/<slug>/cover.jpg (if missing), blog/index.html, the homepage blog cards
 between <!-- BLOG:START --> and <!-- BLOG:END -->, the Blog JSON-LD, and sitemap.xml.
 """
 import glob, html, json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +50,7 @@ footer{border-top:1px solid var(--bd);text-align:center;padding:28px 20px;font-s
 '''
 
 
-def head(title, desc, url, lang, alternates, image, extra=''):
+def head(title, desc, url, lang, alternates, image, extra='', og_type='article'):
     alt = ''.join(f'<link rel="alternate" hreflang="{l}" href="{u}">' for l, u in alternates)
     return f'''<!doctype html>
 <html lang="{lang}">
@@ -60,7 +61,9 @@ def head(title, desc, url, lang, alternates, image, extra=''):
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{url}">
 {alt}
-<meta property="og:type" content="article">
+<meta property="og:type" content="{og_type}">
+<meta property="og:locale" content="{'hu_HU' if lang == 'hu' else 'en_US'}">
+<meta property="og:locale:alternate" content="{'en_US' if lang == 'hu' else 'hu_HU'}">
 <meta property="og:site_name" content="Azrim Studio">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
@@ -74,12 +77,18 @@ def head(title, desc, url, lang, alternates, image, extra=''):
 <style>{CSS}</style>
 </head>
 <body>
-<header class="top"><a class="brand" href="/"><span class="mark"><span>A</span></span>AZRIM STUDIO</a>
-<nav class="nav"><a href="/#services">Services</a><a href="/#portfolio">Work</a><a href="/blog/">Blog</a><a href="/#contact">Contact</a></nav></header>
+{NAV_HU if lang == 'hu' else NAV_EN}
 '''
 
 
-FOOT = '<footer>© 2026 Azrim Studio · Budapest · <a href="/">azrimstudio.com</a> · <a href="https://www.instagram.com/azrimstudio_bp">Instagram</a></footer>\n</body>\n</html>\n'
+NAV_EN = '<header class="top"><a class="brand" href="/"><span class="mark"><span>A</span></span>AZRIM STUDIO</a>\n<nav class="nav"><a href="/#services">Services</a><a href="/#portfolio">Work</a><a href="/blog/">Blog</a><a href="/#contact">Contact</a></nav></header>'
+NAV_HU = '<header class="top"><a class="brand" href="/hu/"><span class="mark"><span>A</span></span>AZRIM STUDIO</a>\n<nav class="nav"><a href="/hu/#services">Szolgáltatások</a><a href="/hu/#portfolio">Munkáink</a><a href="/blog/">Blog</a><a href="/hu/#contact">Kapcsolat</a></nav></header>'
+FOOT_HU = ('<footer><div style="margin-bottom:10px"><a href="/hu/arculattervezes-budapest/">Arculattervezés Budapest</a> · <a href="/hu/kozossegi-media-kezeles-budapest/">Közösségimédia-kezelés</a> · '
+           '<a href="/hu/weboldal-keszites-budapest/">Weboldal-készítés</a> · <a href="/blog/">Blog</a> · <a href="/">English</a></div>'
+           '© 2026 Azrim Studio · Budapest · <a href="/hu/">azrimstudio.com</a> · <a href="https://www.instagram.com/azrimstudio_bp">Instagram</a></footer>\n</body>\n</html>\n')
+FOOT = ('<footer><div style="margin-bottom:10px"><a href="/branding-budapest/">Branding Budapest</a> · <a href="/social-media-management-budapest/">Social media management</a> · '
+        '<a href="/web-design-budapest/">Web design Budapest</a> · <a href="/blog/">Blog</a> · <a href="/hu/">Magyarul</a></div>'
+        '© 2026 Azrim Studio · Budapest · <a href="/">azrimstudio.com</a> · <a href="https://www.instagram.com/azrimstudio_bp">Instagram</a></footer>\n</body>\n</html>\n')
 
 
 def fmt_date(d, lang):
@@ -115,7 +124,7 @@ def post_page(p, lang):
 </article>
 {cta}
 </main>
-''' + FOOT)
+''' + (FOOT_HU if lang == 'hu' else FOOT))
 
 
 def list_page(posts):
@@ -200,16 +209,28 @@ def main():
     open(ip, 'w', encoding='utf-8').write(s)
 
     today = date.today().isoformat()
-    urls = [f'''  <url>\n    <loc>{SITE}/</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>''',
+    def alt_pair(en, hu):
+        return f'    <xhtml:link rel="alternate" hreflang="en" href="{en}"/>\n    <xhtml:link rel="alternate" hreflang="hu" href="{hu}"/>\n    <xhtml:link rel="alternate" hreflang="x-default" href="{en}"/>'
+    urls = []
+    for u in (f'{SITE}/', f'{SITE}/hu/'):
+        urls.append(f'  <url>\n    <loc>{u}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n{alt_pair(SITE + "/", SITE + "/hu/")}\n  </url>')
+    import build_pages
+    for en, hu in build_pages.urls():
+        for u in (en, hu):
+            urls.append(f'  <url>\n    <loc>{u}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.9</priority>\n{alt_pair(en, hu)}\n  </url>')
+    urls += [
             f'''  <url>\n    <loc>{SITE}/blog/</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>''']
     for p in posts:
         en, hu = f'{SITE}/blog/{p["slug"]}/', f'{SITE}/blog/{p["slug"]}/hu/'
-        alt = f'    <xhtml:link rel="alternate" hreflang="en" href="{en}"/>\n    <xhtml:link rel="alternate" hreflang="hu" href="{hu}"/>'
+        alt = alt_pair(en, hu)
         for u in (en, hu):
             urls.append(f'  <url>\n    <loc>{u}</loc>\n    <lastmod>{p["date"]}</lastmod>\n    <priority>0.7</priority>\n{alt}\n  </url>')
     open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(urls) + '\n</urlset>\n')
     print(f'built {len(posts)} post(s)')
+    build_pages.main()
+    import build_hu
+    build_hu.main()
 
 
 if __name__ == '__main__':
