@@ -6,6 +6,10 @@ BG = pathlib.Path("/home/claude/work/tvframe.png").as_uri()
 Y = 1536
 d = f"M-5 {Y} L 1085 {Y}"
 d0 = f"M-5 {Y} C 220 {Y}, 300 {Y-60}, 380 {Y-30} C 460 {Y}, 430 {Y+50}, 500 {Y+10} C 570 {Y-30}, 600 {Y-70}, 660 {Y-20} C 700 {Y+15}, 760 {Y-10}, 820 {Y} C 920 {Y+10}, 980 {Y}, 1085 {Y}"
+import sys; sys.path.insert(0,str(D))
+from monosig import monoline
+_img,_base,_=monoline("rim Stu",175); _p=D/"out"/"sig_rimstu.png"; _img.save(_p)
+SIG=f'<img src="{_p.as_uri()}" style="position:absolute;left:60px;top:{Y-_base-10}px">'
 html = f"""<!doctype html><html><head><link rel=stylesheet href="v2.css"><style>html,body{{width:1080px;height:1920px}}</style></head><body>
 <div style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#111">
 <img src="{BG}" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;filter:contrast(1.05)">
@@ -14,8 +18,7 @@ html = f"""<!doctype html><html><head><link rel=stylesheet href="v2.css"><style>
 <div class=serif style="position:absolute;top:1150px;left:84px;width:900px;font-size:100px;line-height:.95;color:#EFEBE1">Who says you have to<br><span class=it style="color:#C9A84C">stay inside the frame?</span></div>
 <svg width=1080 height=1920 style="position:absolute;inset:0"><path d="{d}" fill=none stroke="#C9A84C" stroke-width=7 stroke-linecap=round/></svg>
 <img src="{LOGO}" style="position:absolute;top:1600px;right:84px;width:56px">
-<div class=sigw style="position:absolute;left:60px;top:0;font-family:Allura;font-size:175px;line-height:1;color:#C9A84C;white-space:nowrap"><span>rim Stu</span><span class=bl style="display:inline-block;width:0;height:0"></span></div>
-<script>document.querySelectorAll('.sigw').forEach(w=>{{const b=w.querySelector('.bl').getBoundingClientRect().top;w.style.top=({Y}+14-b)+'px'}})</script>
+{SIG}
 </div></body></html>"""
 async def main():
     (D/"_rc.html").write_text(html)

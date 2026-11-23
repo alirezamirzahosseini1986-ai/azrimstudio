@@ -6,3 +6,4 @@ Gold thread: every cover enters left edge and exits right edge at y=1215 (of 135
 Output: 1080x1350 JPEG to /social/YYYY-MM/MMDD-<id>-<n>.jpg
 Pinned-row signature: the 3 pinned posts carry "Azrim Studio" in Allura script on the gold thread (split Az | rim Stu | dio). Language rotation for later pinned trios: Hungarian, Arabic, English, Persian, Russian, German, Chinese.
 Reel covers 1080x1920: thread at y=1536 (aligns with y=1215 of 4:5 covers in the 3:4 grid crop).
+Signature is monoline: script glyphs reduced to centre-line and redrawn at the thread's 7px width (monosig.py, needs scikit-image, brotli).
