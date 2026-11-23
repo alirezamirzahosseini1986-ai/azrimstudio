@@ -34,3 +34,5 @@ html,body{width:1080px;height:1350px}
 .stamp{position:absolute;border:5px solid var(--red);color:var(--red);font-family:AN;text-transform:uppercase;padding:10px 26px;font-size:64px;letter-spacing:.02em;opacity:.88;mix-blend-mode:multiply}
 .pill{display:inline-block;font-family:RC;font-size:20px;text-transform:uppercase;letter-spacing:.06em;border:2px solid currentColor;border-radius:999px;padding:8px 20px}
 .logo{position:absolute;width:54px}
+
+@font-face{font-family:Allura;src:url(node_modules/@fontsource/allura/files/allura-latin-400-normal.woff2)}

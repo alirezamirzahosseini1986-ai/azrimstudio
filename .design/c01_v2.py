@@ -1,8 +1,8 @@
 import asyncio, pathlib
 from playwright.async_api import async_playwright
 D = pathlib.Path(__file__).parent
-LOGO = (D.parent/"img"/"logo.png").resolve().as_uri()
-ALI = (D.parent/"img"/"alireza-mirzahosseini.webp").resolve().as_uri()
+LOGO = pathlib.Path("/home/claude/azrimstudio/img/logo.png").as_uri()
+ALI = pathlib.Path("/home/claude/azrimstudio/img/alireza-mirzahosseini.webp").as_uri()
 N = 8
 RED = "#D8432A"
 
@@ -23,6 +23,9 @@ Y=1215
 def thread(d=None,w=7):
     d = d or f"M-5 {Y} C 270 {Y-34}, 540 {Y+34}, 810 {Y} S 1085 {Y} 1085 {Y}"
     return f'<svg width="1080" height="1350" style="position:absolute;inset:0;pointer-events:none;z-index:3"><path d="{d}" fill="none" stroke="#C9A84C" stroke-width="{w}" stroke-linecap="round"/></svg>'
+def sig(txt, x, y=1215, size=210):
+    return f"""<div class=sigw style="position:absolute;left:{x}px;top:0;font-family:Allura;font-size:{size}px;line-height:1;color:#C9A84C;white-space:nowrap;z-index:4"><span>{txt}</span><span class=bl style="display:inline-block;width:0;height:0"></span></div>
+<script>document.querySelectorAll('.sigw').forEach(w=>{{const b=w.querySelector('.bl').getBoundingClientRect().top;w.style.top=({y}+14-b)+'px'}})</script>"""
 def page(i, body, dark=False, label="", th=None):
     c = "#EFEBE1" if dark else "#151515"
     return f"""<!doctype html><html><head><link rel=stylesheet href="v2.css"></head><body>
@@ -42,10 +45,11 @@ S.append(page(1, f"""
 <div class=it style="position:absolute;top:470px;left:70px;font-size:90px;color:#151515">versus</div>
 <div class=an style="position:absolute;top:600px;left:48px;font-size:345px;color:transparent;-webkit-text-stroke:4px #151515;white-space:nowrap">€5,000</div>
 <div class=hw style="position:absolute;top:470px;left:640px;font-size:60px;transform:rotate(-6deg)">what's in<br>this extra 0?</div>
-<div style="position:absolute;top:1000px;left:64px;width:640px">
+<div style="position:absolute;top:955px;left:64px;width:640px">
 <div class=serif style="font-size:58px;line-height:1.02">Why one brand costs €500<br>and another <span class=it>€5,000.</span></div>
-<div style="font-size:24px;color:#6E6A60;margin-top:18px">Mitől 500 és mitől 5000 euró egy arculat?</div></div>
-<div class=hw style="position:absolute;top:1105px;left:530px;font-size:54px;transform:rotate(-5deg)">swipe →</div>
+</div>
+<div class=hw style="position:absolute;top:1120px;left:90px;font-size:46px;transform:rotate(-5deg)">swipe →</div>
+{sig("Az", 395, size=175)}
 """, label="Branding, explained", th=f"M-5 {Y} L 640 {Y} C 760 {Y}, 765 1010, 765 745 A 125 175 0 1 1 1015 745 A 125 175 0 0 1 890 920 C 880 1080, 960 {Y}, 1085 {Y}"))
 # 2 €500 receipt
 S.append(page(2, f"""
