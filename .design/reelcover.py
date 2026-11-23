@@ -7,9 +7,9 @@ Y = 1536
 d = f"M-5 {Y} L 1085 {Y}"
 d0 = f"M-5 {Y} C 220 {Y}, 300 {Y-60}, 380 {Y-30} C 460 {Y}, 430 {Y+50}, 500 {Y+10} C 570 {Y-30}, 600 {Y-70}, 660 {Y-20} C 700 {Y+15}, 760 {Y-10}, 820 {Y} C 920 {Y+10}, 980 {Y}, 1085 {Y}"
 import sys; sys.path.insert(0,str(D))
-from monosig import monoline
-_img,_base,_=monoline("rim Stu",175); _p=D/"out"/"sig_rimstu.png"; _img.save(_p)
-SIG=f'<img src="{_p.as_uri()}" style="position:absolute;left:60px;top:{Y-_base-10}px">'
+from threadword import words, path_through
+SIG, PTS = words([("rim",150),("Stu",440)], Y, D/"out")
+d = path_through(PTS, Y)
 html = f"""<!doctype html><html><head><link rel=stylesheet href="v2.css"><style>html,body{{width:1080px;height:1920px}}</style></head><body>
 <div style="position:relative;width:1080px;height:1920px;overflow:hidden;background:#111">
 <img src="{BG}" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;filter:contrast(1.05)">

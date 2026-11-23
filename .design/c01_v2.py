@@ -23,12 +23,9 @@ Y=1215
 def thread(d=None,w=7):
     d = d or f"M-5 {Y} C 270 {Y-34}, 540 {Y+34}, 810 {Y} S 1085 {Y} 1085 {Y}"
     return f'<svg width="1080" height="1350" style="position:absolute;inset:0;pointer-events:none;z-index:3"><path d="{d}" fill="none" stroke="#C9A84C" stroke-width="{w}" stroke-linecap="round"/></svg>'
-def sig(txt, x, y=1215, size=175, drop=-10):
-    import sys; sys.path.insert(0, str(D))
-    from monosig import monoline
-    img, base, _ = monoline(txt, size)
-    p = D/"out"/f"sig_{abs(hash(txt))}.png"; p.parent.mkdir(exist_ok=True); img.save(p)
-    return f'<img src="{p.as_uri()}" style="position:absolute;left:{x}px;top:{y-base+drop}px;z-index:4">'
+import sys as _s; _s.path.insert(0, str(D))
+from threadword import words as _words, path_through as _pt
+_SIG_HTML, _SIG_PTS = _words([("Az", 300)], 1215, D/"out")
 def page(i, body, dark=False, label="", th=None):
     c = "#EFEBE1" if dark else "#151515"
     return f"""<!doctype html><html><head><link rel=stylesheet href="v2.css"></head><body>
@@ -52,8 +49,8 @@ S.append(page(1, f"""
 <div class=serif style="font-size:58px;line-height:1.02">Why one brand costs €500<br>and another <span class=it>€5,000.</span></div>
 </div>
 <div class=hw style="position:absolute;top:1120px;left:90px;font-size:46px;transform:rotate(-5deg)">swipe →</div>
-{sig("Az", 360, size=175)}
-""", label="Branding, explained", th=f"M-5 {Y} L 640 {Y} C 760 {Y}, 765 1010, 765 745 A 125 175 0 1 1 1015 745 A 125 175 0 0 1 890 920 C 880 1080, 960 {Y}, 1085 {Y}"))
+{_SIG_HTML}
+""", label="Branding, explained", th=_pt(_SIG_PTS, Y, tail_to=(700, Y)) + f" M700 {Y} C 770 {Y}, 765 1010, 765 745 A 125 175 0 1 1 1015 745 A 125 175 0 0 1 890 920 C 880 1080, 960 {Y}, 1085 {Y}"))
 # 2 €500 receipt
 S.append(page(2, f"""
 <div class=it style="position:absolute;top:130px;left:64px;font-size:84px;line-height:1">What <span style="color:#C9A84C">€500</span> buys you</div>
