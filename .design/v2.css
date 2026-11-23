@@ -1,0 +1,36 @@
+@font-face{font-family:IS;src:url(node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2)}
+@font-face{font-family:IS;font-style:italic;src:url(node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2)}
+@font-face{font-family:IS;font-style:italic;src:url(node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-ext-400-italic.woff2);unicode-range:U+0100-02AF}
+@font-face{font-family:IT;font-weight:400;src:url(node_modules/@fontsource/inter-tight/files/inter-tight-latin-400-normal.woff2)}
+@font-face{font-family:IT;font-weight:400;src:url(node_modules/@fontsource/inter-tight/files/inter-tight-latin-ext-400-normal.woff2);unicode-range:U+0100-02AF}
+@font-face{font-family:IT;font-weight:600;src:url(node_modules/@fontsource/inter-tight/files/inter-tight-latin-600-normal.woff2)}
+@font-face{font-family:IT;font-weight:800;src:url(node_modules/@fontsource/inter-tight/files/inter-tight-latin-800-normal.woff2)}
+@font-face{font-family:HW;font-weight:600;src:url(node_modules/@fontsource/caveat/files/caveat-latin-600-normal.woff2)}
+@font-face{font-family:HW;font-weight:600;src:url(node_modules/@fontsource/caveat/files/caveat-latin-ext-600-normal.woff2);unicode-range:U+0100-02AF}
+@font-face{font-family:RC;font-weight:400;src:url(node_modules/@fontsource/space-mono/files/space-mono-latin-400-normal.woff2)}
+@font-face{font-family:RC;font-weight:700;src:url(node_modules/@fontsource/space-mono/files/space-mono-latin-700-normal.woff2)}
+@font-face{font-family:AN;src:url(node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2)}
+:root{--paper:#EFEBE1;--ink:#151515;--gold:#C9A84C;--red:#D8432A;--mute:#6E6A60}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px}
+.s{width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);font-family:IT}
+.s.dark{background:#161616;color:var(--paper)}
+/* paper grain */
+.s:after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.55;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .47  0 0 0 0 .42  0 0 0 .55 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>")}
+.s.dark:after{mix-blend-mode:screen;opacity:.18}
+.meta{position:absolute;font-family:RC;font-size:19px;letter-spacing:.04em;text-transform:uppercase}
+.hw{font-family:HW;font-weight:600;color:var(--red);line-height:1}
+.serif{font-family:IS;font-weight:400}
+.it{font-family:IS;font-style:italic}
+.an{font-family:AN;text-transform:uppercase;letter-spacing:-.01em;line-height:.82}
+/* receipt */
+.rc{position:absolute;background:#FBFAF6;color:#1d1d1d;font-family:RC;font-size:26px;line-height:1.55;padding:56px 52px 70px;box-shadow:0 2px 0 rgba(0,0,0,.04),0 30px 60px -20px rgba(0,0,0,.45),0 12px 24px -12px rgba(0,0,0,.35);
+ -webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 18px) no-repeat,conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) bottom/36px 18px repeat-x}
+.rc .row{display:flex;justify-content:space-between}
+.rc .c{text-align:center}
+.rc hr{border:0;border-top:2px dashed #999;margin:18px 0}
+.rc .tot{font-weight:700;font-size:34px}
+.tape{position:absolute;width:210px;height:58px;background:rgba(232,222,190,.78);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.stamp{position:absolute;border:5px solid var(--red);color:var(--red);font-family:AN;text-transform:uppercase;padding:10px 26px;font-size:64px;letter-spacing:.02em;opacity:.88;mix-blend-mode:multiply}
+.pill{display:inline-block;font-family:RC;font-size:20px;text-transform:uppercase;letter-spacing:.06em;border:2px solid currentColor;border-radius:999px;padding:8px 20px}
+.logo{position:absolute;width:54px}
