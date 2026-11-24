@@ -70,7 +70,7 @@ svg.o{{position:absolute;inset:0;z-index:4}}
 <div class=L id=s4>
  <div class=x style="top:250px;left:72px"><span class=pillw style="border-color:#C9A84C;color:#151515;background:#C9A84C">The fix</span></div>
  <div class=x id=disc style="left:245px;top:522px;width:236px;height:236px;border-radius:50%;background:#E8C547;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 18px 34px -12px rgba(0,0,0,.6);opacity:0">
-  <div class=an style="font-size:104px;color:#1F3B2D;line-height:.9">V51</div><div class=it style="font-size:46px;color:#1F3B2D;margin-top:-4px">café</div></div>
+  <div class=an style="font-size:86px;color:#1F3B2D;line-height:.9">CAFÉ</div><div class=it style="font-size:34px;color:#1F3B2D;margin-top:2px">your name here</div></div>
  <svg class=o width=1080 height=1920><path id=fx d="{FIX}" fill=none stroke="#C9A84C" stroke-width=9 stroke-linecap=round stroke-linejoin=round/></svg>
  <div class=tag id=f1 style="top:820px;left:60px;width:430px;font-size:48px;transform:rotate(-2deg)"><span class=tape></span><b>01</b>a sign that sticks out — seen from 30&nbsp;m</div>
  <div class=pol id=f2 style="top:1000px;left:560px;transform:rotate(4deg)"><img src="{U('inside_still.jpg')}" style="width:400px;height:330px;object-position:50% 38%"><div class=cap><span style="font-family:RC;font-weight:700;font-size:20px;color:#D8432A">02</span> put the inside<br>on the A-board</div></div>
@@ -96,7 +96,7 @@ svg.o{{position:absolute;inset:0;z-index:4}}
  <img class="logo x" id=lg src="{LOGO}" style="top:1180px;left:72px;width:64px">
 </div>
 <script>
-const INS={INS!r}, EXS={EXS!r}, B2="{U('b2.png')}", B1="{U('b1.png')}";
+const INS={INS!r}, EXS={EXS!r}, B2="{U('b2b.png')}", B1="{U('b1b.png')}";
 const $=id=>document.getElementById(id);
 const E=t=>t<=0?0:t>=1?1:1-Math.pow(1-t,3);
 const BK=t=>{{if(t<=0)return 0;if(t>=1)return 1;const c=1.70158;return 1+(c+1)*Math.pow(t-1,3)+c*Math.pow(t-1,2)}};
@@ -107,7 +107,7 @@ function draw(id,s,dur){{const p=$(id),L=p.getTotalLength();p.style.strokeDashar
 let T=0;
 window.setT=async function(t){{T=t;const bg=$('bg');let src,sc=1,ox='50% 50%',filt='none';
  if(t<3.0){{src=INS[Math.min(90,Math.floor(t*30))]}}
- else if(t<5.2){{src=EXS[Math.min(66,Math.floor((t-3)*30))]}}
+ else if(t<5.2){{src=B1;sc=1.0+.05*(t-3)/2.2}}
  else if(t<9.6){{src=B2;sc=1+.04*(t-5.2)/4.4;filt='brightness(.82)'}}
  else if(t<11.4){{src=B1;sc=2.1+.08*(t-9.6)/1.8;ox='35% 56%';filt='brightness(.85)'}}
  else {{src=B2;sc=1.0;filt='saturate(.55) brightness(.9)'}}

@@ -10,7 +10,7 @@ html,body{{width:1080px;height:1920px}} .s{{height:1920px}} .x{{position:absolut
 </style></head><body><div class=s>
 <div class=meta style="top:250px;left:84px;font-size:24px">Azrim Studio — Brand Doctor Nº 01</div>
 <div class="x it" style="top:330px;left:84px;font-size:112px;line-height:.95">Would you<br>walk in?</div>
-<div class=pol style="top:600px;left:150px;transform:rotate(-3deg)"><img src="{U('b2.png')}" style="width:740px;height:700px;object-position:50% 50%"></div>
+<div class=pol style="top:600px;left:150px;transform:rotate(-3deg)"><img src="{U('b2b.png')}" style="width:740px;height:700px;object-position:50% 50%"></div>
 <span class=tape style="top:585px;left:430px;transform:rotate(-4deg)"></span>
 <div class="x hw" style="top:1355px;left:200px;font-size:62px;transform:rotate(-3deg)">wait till you see the inside →</div>
 <svg width=1080 height=1920 style="position:absolute;inset:0;z-index:3"><path d="M-5 {Y} L 760 {Y} L 790 {Y-16} L 815 {Y+10} L 850 {Y-105} L 885 {Y+80} L 915 {Y-28} L 945 {Y} L 1085 {Y}" fill=none stroke="#C9A84C" stroke-width=7 stroke-linecap=round stroke-linejoin=round/></svg>

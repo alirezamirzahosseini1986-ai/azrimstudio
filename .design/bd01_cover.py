@@ -11,7 +11,7 @@ html,body{{width:1080px;height:1920px}} .s{{height:1920px}} .x{{position:absolut
 </style></head><body><div class=s>
 <div class=meta style="top:270px;left:72px;font-size:24px">Azrim Studio — Reel · Brand Doctor Nº 01</div>
 <div class=pol style="top:360px;left:70px;transform:rotate(-5deg)"><img src="{U('inside_still.jpg')}" style="width:440px;height:520px;object-position:50% 40%"><div class=cap>inside</div></div>
-<div class=pol style="top:400px;left:560px;transform:rotate(4deg)"><img src="{U('b2.png')}" style="width:420px;height:500px;object-position:50% 45%;filter:saturate(.8)"><div class=cap style="color:#D8432A">outside</div></div>
+<div class=pol style="top:400px;left:560px;transform:rotate(4deg)"><img src="{U('b2b.png')}" style="width:420px;height:500px;object-position:50% 45%;filter:saturate(.8)"><div class=cap style="color:#D8432A">outside</div></div>
 <span class=tape style="top:350px;left:250px;transform:rotate(-8deg)"></span><span class=tape style="top:385px;left:700px;transform:rotate(5deg)"></span>
 <div class="x it" style="top:1060px;left:72px;font-size:124px;line-height:.92">Cosy inside.</div>
 <div class="x an" style="top:1190px;left:72px;font-size:178px">Invisible<br>outside.</div>
