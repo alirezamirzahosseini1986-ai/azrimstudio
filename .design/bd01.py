@@ -4,7 +4,7 @@ from playwright.async_api import async_playwright
 D = pathlib.Path(__file__).parent
 W = pathlib.Path("/home/claude/work/bd")
 LOGO = pathlib.Path("/home/claude/azrimstudio/img/logo.png").as_uri()
-FPS, SEC = 30, 22
+FPS, SEC = 30, 23
 Y = 1536
 U = lambda p: (W/p).as_uri()
 INS = [U(f"in/{i:03d}.jpg") for i in range(1, 92)]
@@ -58,7 +58,7 @@ svg.o{{position:absolute;inset:0;z-index:4}}
  </svg>
  <div class=tag id=t1 style="top:600px;left:60px;width:440px;font-size:50px;transform:rotate(-3deg)"><span class=tape></span><b>01</b>flat on the wall — invisible from down the street</div>
  <div class=tag id=t2 style="top:1290px;left:60px;width:470px;font-size:50px;transform:rotate(2deg)"><span class=tape></span><b>02</b>chalk too faint to read from 3&nbsp;m</div>
- <div class=tag id=t3 style="top:330px;left:330px;width:420px;font-size:50px;transform:rotate(-2deg)"><span class=tape></span><b>03</b>the neighbour’s sign wins the eye</div>
+ <div class=tag id=t3 style="top:320px;left:300px;width:460px;font-size:50px;transform:rotate(-2deg)"><span class=tape></span><b>03</b>two names, two colours — which one is the café?</div>
 </div>
 <!-- S3b window close-up -->
 <div class=L id=s3b>
@@ -75,6 +75,7 @@ svg.o{{position:absolute;inset:0;z-index:4}}
  <div class=tag id=f1 style="top:820px;left:60px;width:430px;font-size:48px;transform:rotate(-2deg)"><span class=tape></span><b>01</b>a sign that sticks out — seen from 30&nbsp;m</div>
  <div class=pol id=f2 style="top:1000px;left:560px;transform:rotate(4deg)"><img src="{U('inside_still.jpg')}" style="width:400px;height:330px;object-position:50% 38%"><div class=cap><span style="font-family:RC;font-weight:700;font-size:20px;color:#D8432A">02</span> put the inside<br>on the A-board</div></div>
  <div class=tag id=f3 style="top:1150px;left:50px;width:470px;font-size:48px;transform:rotate(2deg)"><span class=tape></span><b>03</b>window: 3 words, not 20<br><span style="font-family:IS;font-style:italic;font-weight:400;font-size:52px">kávé · reggeli · leves</span></div>
+ <div class=tag id=f4 style="top:290px;left:330px;width:470px;font-size:44px;transform:rotate(-2deg)"><span class=tape></span><b>04</b>one lead name outside — the second brand sits under it</div>
 </div>
 <!-- S5 rule -->
 <div class=L id=s5><div class=paper></div>
@@ -113,7 +114,7 @@ window.setT=async function(t){{T=t;const bg=$('bg');let src,sc=1,ox='50% 50%',fi
  bg.style.transform=`scale(${{sc}})`;bg.style.transformOrigin=ox;bg.style.filter=filt;
  if(bg.getAttribute('src')!==src){{bg.setAttribute('src',src);await bg.decode()}}
  $('topsh').style.opacity=t<11.4?1:.8;
- vis('s1',-1,3.0,.12);vis('s2',3.0,5.2,.12);vis('s3',5.2,9.6,.15);vis('s3b',9.6,11.4,.12);vis('s4',11.4,17.0,.15);vis('s5',17.0,19.2,.2);vis('s6',19.2,99,.2);
+ vis('s1',-1,3.0,.12);vis('s2',3.0,5.2,.12);vis('s3',5.2,9.6,.15);vis('s3b',9.6,11.4,.12);vis('s4',11.4,18.0,.15);vis('s5',18.0,20.2,.2);vis('s6',20.2,99,.2);
  rise('s1a',0,.35,40);rise('s1b',.25,.4,40);
  rise('s2a',3.05,.35,40);rise('s2b',3.35,.4,40);
  draw('c1',5.45,.4);pop('t1',5.75);
@@ -121,11 +122,11 @@ window.setT=async function(t){{T=t;const bg=$('bg');let src,sc=1,ox='50% 50%',fi
  draw('c3',8.25,.4);pop('t3',8.5);
  draw('c4',9.75,.4);pop('t4',10.05);
  draw('fx',11.55,1.3);{{const k=E((T-12.75)/.4);$('disc').style.opacity=k;$('disc').style.scale=.85+.15*k}}
- pop('f1',13.1);pop('f2',14.1);pop('f3',15.1);
- rise('r1',17.15,.45,50);rise('r2',17.45,.4,50);draw('hb',17.6,1.0);rise('r3',18.2,.4,20);
- rise('k1',19.35,.45,50);{{const k=E((T-19.9)/.7);$('k2').style.clipPath=`inset(-30px ${{100-100*k}}% -30px 0)`}}
- rise('k3',20.4,.4,20);rise('k4',20.6,.4,20);rise('lg',20.6,.4,0);draw('hb2',19.3,.9);
- if(T>20.8){{$('k2').style.translate=`0 ${{6*Math.sin((T-20.8)*5)}}px`}}
+ pop('f1',13.1);pop('f2',14.1);pop('f3',15.1);pop('f4',16.1);
+ rise('r1',18.15,.45,50);rise('r2',18.45,.4,50);draw('hb',18.6,1.0);rise('r3',19.2,.4,20);
+ rise('k1',20.35,.45,50);{{const k=E((T-20.9)/.7);$('k2').style.clipPath=`inset(-30px ${{100-100*k}}% -30px 0)`}}
+ rise('k3',21.4,.4,20);rise('k4',21.6,.4,20);rise('lg',21.6,.4,0);draw('hb2',20.3,.9);
+ if(T>21.8){{$('k2').style.translate=`0 ${{6*Math.sin((T-21.8)*5)}}px`}}
 }}
 </script></body></html>"""
 
