@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ars Persica — Persian rugs, kilims &amp; handicrafts in Europe</title>
+<meta name="description" content="Ars Persica: hand-knotted Persian rugs, kilims and Iranian handicrafts from Budapest. English · Magyar · Deutsch · العربية · فارسی">
+<link rel="canonical" href="https://arspersica.eu/">
+<link rel="alternate" hreflang="en" href="https://arspersica.eu/en/">
+<link rel="alternate" hreflang="hu" href="https://arspersica.eu/hu/">
+<link rel="alternate" hreflang="de" href="https://arspersica.eu/de/">
+<link rel="alternate" hreflang="ar" href="https://arspersica.eu/ar/">
+<link rel="alternate" hreflang="fa" href="https://arspersica.eu/fa/">
+<link rel="alternate" hreflang="x-default" href="https://arspersica.eu/">
+<meta property="og:title" content="Ars Persica"><meta property="og:image" content="https://arspersica.eu/assets/img/og-arspersica.jpg">
+<link rel="icon" href="assets/brand/icon-32.png" sizes="32x32">
+<meta name="theme-color" content="#f4ecdf">
+<script>
+(function(){
+  if (/[?&]stay\b/.test(location.search)) return;
+  var ok=["en", "hu", "de", "ar", "fa"], pick=null;
+  try{ pick=localStorage.getItem("ap-lang"); }catch(e){}
+  if(ok.indexOf(pick)<0){ var ls=(navigator.languages||[navigator.language||"en"]);
+    for(var i=0;i<ls.length&&!pick;i++){ var c=(ls[i]||"").slice(0,2).toLowerCase(); if(ok.indexOf(c)>-1) pick=c; } }
+  location.replace((pick||"en")+"/");
+})();
+</script>
+<style>
+@font-face{font-family:'Cinzel';src:url(assets/fonts/cinzel-latin-500-normal.woff2) format('woff2');font-weight:500;font-display:swap}
+html,body{height:100%;margin:0}
+body{background:#f4ecdf;color:#3a2519;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;display:grid;place-items:center}
+main{text-align:center;padding:40px 20px}
+img{width:120px;height:auto;margin:0 auto 28px}
+h1{font-family:'Cinzel',Georgia,serif;font-weight:500;letter-spacing:.2em;font-size:22px;margin:0 0 36px}
+nav{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:10px}
+a{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 20px;border:1px solid rgba(58,37,25,.25);color:inherit;text-decoration:none}
+a:hover{border-color:#a8592e;color:#a8592e}
+.code{font-family:'Cinzel',Georgia,serif;letter-spacing:.14em;color:#a8592e}
+</style>
+</head>
+<body>
+<main>
+<img src="assets/brand/logo-vertical-color.webp" width="400" height="512" alt="Ars Persica">
+<h1>ARS PERSICA</h1>
+<nav aria-label="Language"><a href="en/" hreflang="en" lang="en" data-lang="en"><span class="code">EN</span><span class="name">English</span></a><a href="hu/" hreflang="hu" lang="hu" data-lang="hu"><span class="code">HU</span><span class="name">Magyar</span></a><a href="de/" hreflang="de" lang="de" data-lang="de"><span class="code">DE</span><span class="name">Deutsch</span></a><a href="ar/" hreflang="ar" lang="ar" data-lang="ar"><span class="code">AR</span><span class="name">العربية</span></a><a href="fa/" hreflang="fa" lang="fa" data-lang="fa"><span class="code">FA</span><span class="name">فارسی</span></a></nav>
+</main>
+<script>document.querySelectorAll("[data-lang]").forEach(function(a){a.addEventListener("click",function(){try{localStorage.setItem("ap-lang",a.dataset.lang)}catch(e){}})});</script>
+</body>
+</html>
